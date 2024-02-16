@@ -7,3 +7,11 @@ export default function getLocalizedDate(date) {
     day: 'numeric'
   });
 }
+
+export function getLocalizedDatePoints(date) {
+  return new Date(date).toLocaleDateString(siteData.locale, {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric'
+  });
+}

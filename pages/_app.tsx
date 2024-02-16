@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         )}
       <Toaster />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   );
 }

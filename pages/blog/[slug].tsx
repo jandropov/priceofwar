@@ -49,7 +49,7 @@ const ArticlePage = ({
                 {publishedOn !== modifiedDate && (
                   <>
                     <span className="sm:block hidden">•</span>
-                    <span className="0">Updated on {modifiedDate}</span>
+                    <span className="0">ред. {modifiedDate}</span>
                   </>
                 )}
               </div>
@@ -84,10 +84,10 @@ const ArticlePage = ({
           <div className="py-12 border-t">
             <Container>
               <div className="flex items-center justify-between my-8">
-                <div className="text-3xl font-bold text-gray-900">Latest articles</div>
+                <div className="text-3xl font-bold text-gray-900">Последнее</div>
                 <Link href="/">
                   <span className="font-semibold text-gray-900 cursor-pointer">
-                    More articles ➜
+                    Смотреть все ➜
                   </span>
                 </Link>
               </div>
