@@ -41,7 +41,7 @@ export default function Index(props) {
   const filteredArticles = filterArticles(articles, selectedTag);
 
 
-  const [views, setViews] = useState<Record<string, number>>(null)
+  const [views, setViews] = useState<Record<string, number>>({})
   //
   async function getViews() {
     const views = (
