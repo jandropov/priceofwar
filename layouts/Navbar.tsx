@@ -6,8 +6,8 @@ import Image from 'next/image';
 
 export default function Navbar() {
   return (
-    <div className=" z-50 w-full border-b border-neutral-800 bg-black">
-      <Container>
+    <div className=" z-50 w-full border-b border-neutral-500/30 bg-neutral-700/10 md:absolute">
+      <div className='max-w-7xl mx-auto px-8'>
         <div className="flex justify-between w-full py-6 text-white flex-col sm:flex-row gap-5 items-center">
           <Link href="/">
             <div className='hover:cursor-pointer flex items-center gap-4'>
@@ -22,7 +22,7 @@ export default function Navbar() {
                 height={50}
                 alt={'Цена войны'}
               />
-              <div className="text-2xl font-bold">ЦЕНА ВОЙНЫ</div>
+              <div className="text-2xl font-russo">ЦЕНА ВОЙНЫ</div>
             </div>
             {/*<div className="text-xl font-bold cursor-pointer">{siteData?.author}</div>*/}
 
@@ -44,7 +44,7 @@ export default function Navbar() {
           {/*  </a>*/}
           {/*</div>*/}
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

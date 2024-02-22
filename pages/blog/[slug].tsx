@@ -65,9 +65,9 @@ const ArticlePage = ({
         date={new Date(publishedDate).toISOString()}
         ogUrl={`/blog/${slug}`}
       >
-        <div className='bg-neutral-100'>
-          <div className="px-6 py-16 pt-16 pb-48 mx-auto -mb-48 text-center bg-gray-1100 bg-[url('https://app-router.vercel.app/grid.svg')] md:pb-96 md:-mb-96">
-            <div className="max-w-3xl mx-auto">
+        <div className='bg-neutral-100 bg-cover' >
+          <div className="px-6 py-16 pt-16 pb-48 mx-auto -mb-48 text-center bg-gray-1100 md:pb-96 md:-mb-96 bg-cover" style={{ backgroundImage: 'url(./img/bg.webp)' }}>
+            <div className="max-w-3xl mx-auto mt-20" >
               <div className="flex items-center justify-center flex-col md:flex-row mb-2 space-x-2 text-sm text-zinc-400">
                 <div className="">{publishedOn}</div>
                 {publishedOn !== modifiedDate && (

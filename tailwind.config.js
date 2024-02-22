@@ -6,7 +6,10 @@ module.exports = {
     './lib/**/*.tsx'
   ],
   theme: {
-    extend: {}
+    fontFamily: {
+      'russo': ['Russo One', 'sans-serif'],
+      'amc': ['amc', 'sans-serif'],
+    }
   },
   plugins: [require('@tailwindcss/line-clamp')]
 };

@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "amc";
+    src: url("/fonts/amc100f.ttf");
+}
 
 html,
 body {
@@ -22,5 +29,5 @@ a {
 
 .bg-gray-1100 {
     --tw-bg-opacity: 1;
-    background-color: rgb(10 10 11/var(--tw-bg-opacity));
+    background-color: rgb(10 11 11/var(--tw-bg-opacity));
 }
