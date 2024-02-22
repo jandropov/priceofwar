@@ -5,9 +5,10 @@ import getLocalizedDate, { getLocalizedDatePoints } from 'utils/getLocalizedDate
 
 type Props = {
   article: Article;
-
+  views: any;
 };
 
+// @ts-ignore
 export default function ArticleCard({ article, views }: Props,) {
   const slug = slugify(article.title).toLowerCase();
 
