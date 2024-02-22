@@ -1,7 +1,7 @@
 const siteData = {
-  title: 'Starter Notion blog for Nextjs with Tailwind',
-  author: 'ЦЕНА ВОЙНЫ ',
-  headerTitle: 'Nextjs Notion Blog Starter',
+  title: 'Специальный проект по изучению затрат на войну',
+  author: 'Очнись',
+  headerTitle: 'Цена войны',
   profileUrl: '/nextjs-logo.png',
   headerDescription: 'Starter Notion blog for Nextjs with Tailwind',
   footerText: '© All rights reserved',
