@@ -5,7 +5,7 @@ import getLocalizedDate, { getLocalizedDatePoints } from 'utils/getLocalizedDate
 
 type Props = {
   article: Article;
-  views: any;
+  views?: any;
 };
 
 // @ts-ignore

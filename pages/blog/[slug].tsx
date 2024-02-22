@@ -128,7 +128,7 @@ const ArticlePage = ({
               </div>
               <div className="grid gap-10 lg:gap-12 sm:grid-cols-2">
                 {moreArticles.map(article => (
-                  <ArticleCard article={article} key={article.id} />
+                  <ArticleCard article={article} key={article.id}/>
                 ))}
               </div>
             </Container>
