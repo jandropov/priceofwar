@@ -41,7 +41,7 @@ export default function Index(props) {
   const filteredArticles = filterArticles(articles, selectedTag);
 
 
-  const [views, setViews] = useState()
+  const [views, setViews] = useState<Record<string, number>>(null)
   //
   async function getViews() {
     const views = (
@@ -57,7 +57,6 @@ export default function Index(props) {
   //
   useEffect( () => {
     getViews().then((request) => {
-      // @ts-ignore
       setViews(request)
     })
   },[])
