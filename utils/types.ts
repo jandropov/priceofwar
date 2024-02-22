@@ -8,6 +8,7 @@ export type Article = {
   readingTime?: string;
   user: any;
   id: string;
+  // views?: any;
 };
 
 export type Language =

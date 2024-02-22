@@ -115,8 +115,10 @@ export function shuffleArray(array: Array<any>) {
 export const getArticlePageData = async (page: any, slug: any, databaseId) => {
   let content = [];
   let title = '';
+  // let id = '';
 
   title = page.properties.title.title[0].plain_text;
+  // id = page.id
 
   const moreArticles: any = await getMoreArticlesToSuggest(databaseId, title);
 
@@ -139,6 +141,7 @@ export const getArticlePageData = async (page: any, slug: any, databaseId) => {
     ...mapArticleProperties(page),
     content,
     slug,
+    // id,
     moreArticles
   };
 };

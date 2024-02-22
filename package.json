@@ -19,6 +19,7 @@
     "@notionhq/client": "^0.4.13",
     "@tabler/icons": "^1.119.0",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "@upstash/redis": "^1.28.4",
     "canvas-confetti": "^1.9.2",
     "classnames": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",

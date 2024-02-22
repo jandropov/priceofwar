@@ -5,9 +5,10 @@ import getLocalizedDate, { getLocalizedDatePoints } from 'utils/getLocalizedDate
 
 type Props = {
   article: Article;
+
 };
 
-export default function ArticleCard({ article }: Props) {
+export default function ArticleCard({ article, views }: Props,) {
   const slug = slugify(article.title).toLowerCase();
 
   const formattedTime = getLocalizedDate(article.publishedDate);
@@ -15,39 +16,81 @@ export default function ArticleCard({ article }: Props) {
 
   return (
     <a href={`/blog/${slug}`}>
-      <article
-        className="relative flex bg-black h-72 overflow-hidden border-[0.5px] border-neutral-700 rounded-md hover:border-neutral-500 transition duration-200 ">
-        {/*<img itemProp="image" className="absolute object-cover w-full h-full"*/}
-        {/*     src={article.thumbnail}*/}
-        {/*     alt=""*/}
-        {/*     title="" />*/}
-        <Image
-                className="absolute object-cover w-full h-full"
-                src={article.thumbnail}
-                blurDataURL={article.thumbnail}
-                objectFit="cover"
-                // placeholder="blur"
-                layout="fill"
-                // width={800}
-                // height={400}
-                alt={'Обложка статьи'}
-        />
-        <div className="absolute w-full h-full bg-black/60"></div>
-        <div className="absolute w-full h-full bg-gradient-to-tr from-black"></div>
-        <div className="relative m-4 z-10 grid">
-          <div className="absolute top-0 left-0">
-            <time className='text-xs text-neutral-400' dateTime={pointedTime}>{pointedTime}</time>
+
+      <article className='bg-neutral-900 border border-neutral-700 hover:border-neutral-600 rounded-md overflow-hidden'>
+        <div className="flex">
+          <div className="p-5 pr-0">
+            <time className="text-xs text-neutral-400" dateTime={pointedTime}>{pointedTime}</time>
+            <span className="flex items-center text-neutral-400 text-xs">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       width="24" height="24"
+                       viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor"
+                       strokeWidth="2"
+                       strokeLinecap="round"
+                       strokeLinejoin="round"
+                       className="w-4 h-4 mr-1">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              {views}</span>
           </div>
-          <div className="flex gap-2 mt-auto flex-wrap">
-            <h2 className='text-white'>
+          {/*<div className='relative w-1/4 aspect-square'>*/}
+          {/*  <Image*/}
+          {/*    className="absolute object-cover"*/}
+          {/*    src={article.thumbnail}*/}
+          {/*    blurDataURL={article.thumbnail}*/}
+          {/*    objectFit="cover"*/}
+          {/*    // placeholder="blur"*/}
+          {/*    layout="fill"*/}
+          {/*    // width={800}*/}
+          {/*    // height={400}*/}
+          {/*    alt={'Обложка статьи'}*/}
+          {/*  />*/}
+          {/*</div>*/}
+          <div className="text-white p-5">
+            <h2 className="font-medium">
               {article.title}
             </h2>
-            <span className="text-xs text-neutral-400">
+            <span className="text-neutral-400">
               {article.summary}
             </span>
           </div>
+
+
         </div>
       </article>
+      {/*<article*/}
+      {/*  className="relative flex bg-black h-72 overflow-hidden border-[0.5px] border-neutral-700 rounded-md hover:border-neutral-500 transition duration-200 ">*/}
+      {/*  /!*<img itemProp="image" className="absolute object-cover w-full h-full"*!/*/}
+      {/*  /!*     src={article.thumbnail}*!/*/}
+      {/*  /!*     alt=""*!/*/}
+      {/*  /!*     title="" />*!/*/}
+      {/*  <Image*/}
+      {/*          className="absolute object-cover w-full h-full"*/}
+      {/*          src={article.thumbnail}*/}
+      {/*          blurDataURL={article.thumbnail}*/}
+      {/*          objectFit="cover"*/}
+      {/*          // placeholder="blur"*/}
+      {/*          layout="fill"*/}
+      {/*          // width={800}*/}
+      {/*          // height={400}*/}
+      {/*          alt={'Обложка статьи'}*/}
+      {/*  />*/}
+      {/*  <div className="absolute w-full h-full bg-black/60"></div>*/}
+      {/*  <div className="absolute w-full h-full bg-gradient-to-tr from-black"></div>*/}
+      {/*  <div className="relative m-4 z-10 grid">*/}
+      {/*    <div className="absolute top-0 left-0">*/}
+      {/*      <time className='text-xs text-neutral-400' dateTime={pointedTime}>{pointedTime}</time>*/}
+      {/*    </div>*/}
+      {/*    <div className="flex gap-2 mt-auto flex-wrap">*/}
+      {/*      <h2 className='text-white'>*/}
+      {/*        {article.title}*/}
+      {/*      </h2>*/}
+      {/*      <span className="text-xs text-neutral-400">*/}
+      {/*        {article.summary}*/}
+      {/*      </span>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</article>*/}
 
 
       {/*<div className="flex flex-col overflow-hidden cursor-pointer group">*/}

@@ -6,9 +6,9 @@ import Image from 'next/image';
 
 export default function Navbar() {
   return (
-    <div className=" z-50 w-full border-b border-neutral-800 bg-neutral-800">
+    <div className=" z-50 w-full border-b border-neutral-800 bg-black">
       <Container>
-        <div className="flex justify-between w-full py-6 text-white">
+        <div className="flex justify-between w-full py-6 text-white flex-col sm:flex-row gap-5 items-center">
           <Link href="/">
             <div className='hover:cursor-pointer flex items-center gap-4'>
               <Image
@@ -28,9 +28,21 @@ export default function Navbar() {
 
           </Link>
           {/*<Socials />*/}
+
           <div className='flex items-center'>
-            .
+            <a target={'_blank'} rel={'noreferrer'} href="https://t.me/wakeup_check_bot">
+              <div className='px-3 py-2 rounded border bg-blue-600 border-neutral-800 hover:bg-blue-500'>
+                Предложить материал
+              </div>
+            </a>
           </div>
+          {/*<div className='flex items-center hidden'>*/}
+          {/*  <a href="">*/}
+          {/*    <div className='px-3 py-2 rounded border bg-blue-600 border-neutral-800 hover:bg-blue-500'>*/}
+          {/*      Предложить материал*/}
+          {/*    </div>*/}
+          {/*  </a>*/}
+          {/*</div>*/}
         </div>
       </Container>
     </div>
