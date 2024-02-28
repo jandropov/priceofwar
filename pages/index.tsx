@@ -1,12 +1,21 @@
-import { convertToArticleList, getAllArticles, notion } from 'utils/notion';
+import {
+  convertToArticleList,
+  convertToNewsList,
+  getAllArticles,
+  getArticles,
+  getIndexArticles,
+  notion
+} from 'utils/notion';
 import { Layout } from 'layouts/Layout';
 import HeroHeader from 'components/HeroHeader';
 import Container from 'components/Container';
 import { Fragment, useEffect, useState } from 'react';
 import { filterArticles } from 'utils/filterArticles';
 import Category from 'components/Category';
+import NewsCard from 'components/NewsCard';
 import ArticleCard from 'components/ArticleCard';
 import { Redis } from '@upstash/redis';
+import { filterNews } from '../utils/filterNews';
 
 const redis = new Redis({
   url: 'https://eu1-pumped-impala-39339.upstash.io',
@@ -17,17 +26,22 @@ const fetchPageBlocks = (pageId: string) => {
   return notion.blocks.children.list({ block_id: pageId }).then(res => res.results);
 };
 
-export const getStaticProps = async () => {
-  const data = await getAllArticles(process.env.BLOG_DATABASE_ID);
-  // const blocks = await fetchPageBlocks(data[0].id);
 
-  const { articles, categories } = convertToArticleList(data);
+export const getStaticProps = async () => {
+  const data = await getIndexArticles(process.env.BLOG_DATABASE_ID);
+
+  // const blocks = await fetchPageBlocks(data[0].id);
+  console.log(data)
+
+  const { articles, categories } = convertToArticleList(data.articles);
+  const { news, cats } = convertToNewsList(data.news);
 
   return {
     props: {
-      data,
+      // articles_data,
       // blocks,
       articles,
+      news,
       categories
     },
     revalidate: 60
@@ -35,31 +49,48 @@ export const getStaticProps = async () => {
 };
 
 export default function Index(props) {
-  const { articles, categories } = props;
+  const { articles, news, categories } = props;
 
   const [selectedTag, setSelectedTag] = useState<string>(null);
   const filteredArticles = filterArticles(articles, selectedTag);
+  const filteredNews = filterNews(news)
+  // const allarticles = Object.assign(filteredArticles, filteredNews);
 
+  // const [newsViews, setNewsViews] = useState<Record<string, number>>({})
+  // const [articleViews, setArticleViews] = useState<Record<string, number>>({})
+  //
+  // async function getViews() {
+  //   const views = (
+  //     await redis.mget<number[]>(
+  //       ...filteredNews.map((p) => ["pageviews", "news", p.id].join(":")),
+  //     )
+  //   ).reduce((acc, v, i) => {
+  //     acc[articles[i].id] = v ?? 0;
+  //     return acc;
+  //   }, {} as Record<string, number>);
+  //   return views
+  // }
 
-  const [views, setViews] = useState<Record<string, number>>({})
-  //
-  async function getViews() {
-    const views = (
-      await redis.mget<number[]>(
-        ...articles.map((p) => ["pageviews", "articles", p.id].join(":")),
-      )
-    ).reduce((acc, v, i) => {
-      acc[articles[i].id] = v ?? 0;
-      return acc;
-    }, {} as Record<string, number>);
-    return views
-  }
-  //
-  useEffect( () => {
-    getViews().then((request) => {
-      setViews(request)
-    })
-  },[])
+  // async function getViews2() {
+  //   const views = (
+  //     await redis.mget<number[]>(
+  //       ...filteredArticles.map((p) => ["pageviews", "articles", p.id].join(":")),
+  //     )
+  //   ).reduce((acc, v, i) => {
+  //     acc[articles[i].id] = v ?? 0;
+  //     return acc;
+  //   }, {} as Record<string, number>);
+  //   return views
+  // }
+  // //
+  // useEffect( () => {
+  //   getViews().then((request) => {
+  //     setNewsViews(request)
+  //   })
+  //   getViews2().then((request) => {
+  //     setArticleViews(request)
+  //   })
+  // },[])
 
 
   // @ts-ignore
@@ -211,17 +242,39 @@ export default function Index(props) {
         <div className="py-8">
           <div className="mb-4 text-2xl font-bold text-neutral-50">
             {/*{!selectedTag ? 'Latest articles' : `${selectedTag} articles`}*/}
-            Публикации
+            Новости
           </div>
           <div className="flex flex-col gap-4">
-            {filteredArticles.map(article => (
-              <ArticleCard article={article}
-                           key={article.id}
-                           views={views[article.id]} />
+            {filteredNews.map(article => (
+              <NewsCard article={article}
+                        key={article.id}
+                        views={0} />
             ))}
           </div>
         </div>
       </div>
+
+      <section className='max-w-7xl  px-4 mx-auto md:px-8 mb-10'>
+        <div className='flex justify-between pt-4 pb-4'>
+          <div className='text-2xl font-bold text-neutral-50'>
+            Статьи
+          </div>
+          <a href="">
+            <div className='text-blue-400'>
+              Смотреть все
+            </div>
+          </a>
+
+        </div>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {filteredArticles.map(article => (
+            <ArticleCard article={article}
+                      key={article.id}
+                      views={0} />
+          ))}
+        </div>
+      </section>
 
     </Layout>
   );

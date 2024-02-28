@@ -5,14 +5,112 @@ export const notion = new Client({
   auth: process.env.NOTION_SECRET
 });
 
+export const getIndexArticles = async databaseId => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: "status",
+          select: {
+            equals: '✅ Published'
+          }
+        },
+        {
+          property: "route",
+          select: {
+            equals: 'news'
+          }
+        },
+      ]
+    }
+  });
+  const response2 = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: "status",
+          select: {
+            equals: '✅ Published'
+          }
+        },
+        {
+          property: "route",
+          select: {
+            equals: 'articles'
+          }
+        },
+      ]
+    }
+  });
+  let data = {
+    news: response.results,
+    articles: response2.results
+  }
+  return data;
+};
+
 export const getAllArticles = async databaseId => {
   const response = await notion.databases.query({
     database_id: databaseId,
     filter: {
-      property: 'status',
-      select: {
-        equals: '✅ Published'
-      }
+      and: [
+        {
+          property: "status",
+          select: {
+            equals: '✅ Published'
+          }
+        },
+      ]
+    }
+  });
+
+  return response.results;
+};
+
+export const getNews = async databaseId => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: "status",
+          select: {
+            equals: '✅ Published'
+          }
+        },
+        {
+          property: "route",
+          select: {
+            equals: 'news'
+          }
+        },
+      ]
+    }
+  });
+
+  return response.results;
+};
+
+export const getArticles = async databaseId => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: "status",
+          select: {
+            equals: '✅ Published'
+          }
+        },
+        {
+          property: "route",
+          select: {
+            equals: 'articles'
+          }
+        },
+      ]
     }
   });
 
@@ -38,6 +136,7 @@ const mapArticleProperties = article => {
 };
 
 export const convertToArticleList = (tableData: any) => {
+  console.log(tableData)
   let categories: string[] = [];
 
   const articles = tableData.map((article: any) => {
@@ -54,6 +153,25 @@ export const convertToArticleList = (tableData: any) => {
   });
 
   return { articles, categories };
+};
+
+export const convertToNewsList = (tableData: any) => {
+  let cats: string[] = [];
+
+  const news = tableData.map((article: any) => {
+    const { properties } = article;
+
+    properties?.categories?.multi_select?.forEach((category: any) => {
+      const { name } = category;
+      if (!cats.includes(name) && name) {
+        cats.push(name);
+      }
+    });
+
+    return mapArticleProperties(article);
+  });
+
+  return { news, cats };
 };
 
 export const getMoreArticlesToSuggest = async (databaseId, currentArticleTitle) => {

@@ -8,7 +8,7 @@ import getLocalizedDate from 'utils/getLocalizedDate';
 import Container from 'components/Container';
 import slugify from 'slugify';
 import siteData from 'siteData';
-import ArticleCard from 'components/ArticleCard';
+import NewsCard from 'components/NewsCard';
 
 
 import { ReportView } from "components/views";
@@ -128,7 +128,7 @@ const ArticlePage = ({
               </div>
               <div className="grid gap-10 lg:gap-12 sm:grid-cols-2">
                 {moreArticles.map(article => (
-                  <ArticleCard article={article} key={article.id}/>
+                  <NewsCard article={article} key={article.id}/>
                 ))}
               </div>
             </Container>
