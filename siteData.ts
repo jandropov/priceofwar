@@ -1,9 +1,9 @@
 const siteData = {
   title: 'Специальный проект по изучению затрат на войну',
-  author: 'Очнись',
+  author: 'Цена войны',
   headerTitle: 'Цена войны',
   profileUrl: '/nextjs-logo.png',
-  headerDescription: 'Starter Notion blog for Nextjs with Tailwind',
+  headerDescription: 'Специальный проект по изучению и распространению информации о государственных затратах на войну.',
   footerText: '© All rights reserved',
   language: 'ru-Ru',
   locale: 'ru-RU',
