@@ -114,11 +114,15 @@ export function renderBlocks(block) {
     case 'table_of_contents':
       return <div>TOC</div>;
     case 'video':
+      let url = value?.external?.url
+      if (url) {
+        url = url.replace('youtu.be', 'www.youtube.com/embed');
+      }
       return (
         <div className="relative overflow-hidden">
           <iframe
             className="w-full h-96 md:h-[680px]"
-            src={value?.external?.url || ''}
+            src={url || ''}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
